@@ -15,7 +15,6 @@ int		init_thread(t_var *var)
     //printf("nb = %d\n", var->nb_philo);
     if (var->nb_philo > 1)
     {
-        //printf("hihi\n");
         if (pthread_create(&var->watcher, NULL, &watcher_routine, var) != 0)
             return (2);
     }

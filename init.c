@@ -141,15 +141,15 @@ t_var	*init_base(t_var *var, int argc, char **argv)
 	else
 		var->must_eat = -1;
 	var->philo = init_philo(var);
-	 unsigned int i = 0;
-	while (i < var->nb_philo)
-	{
-		//printf("check = %d\n", var->philo[i]->id);
-		printf("id = %d\n", var->philo[i]->id);
-		//printf("eat_count = %d\n", var->philo[i]->eat_count);
-		//printf("last_eat = %ld\n", var->philo[i]->last_eat);
-	 	i++;
-	}
+	//  unsigned int i = 0;
+	// while (i < var->nb_philo)
+	// {
+	// 	//printf("check = %d\n", var->philo[i]->id);
+	// 	printf("id = %d\n", var->philo[i]->id);
+	// 	//printf("eat_count = %d\n", var->philo[i]->eat_count);
+	// 	//printf("last_eat = %ld\n", var->philo[i]->last_eat);
+	//  	i++;
+	// }
 	if (!var->philo)
 		return (printf("Philo init error\n"), NULL);
 	if (init_mutex(var) != 1)

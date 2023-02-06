@@ -2,7 +2,7 @@ NAME := philo
 
 CC := gcc
 
-CFLAGS := -Wall -Wextra -Werror -pthread 
+CFLAGS := -Wall -Wextra -Werror -pthread -g
 
 SRC = ft_check.c \
 ft_error.c \
