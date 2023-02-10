@@ -47,7 +47,14 @@ int				ft_atoi(char *str);
 //ft_error.c
 int				ft_check_error(char **argv);
 int				ft_error(char **argv);
-int		ft_error_init(t_var *var, int argc, char **argv);
+void			print_philos_error(t_var *var);
+
+//ft_error_init.c
+void			print_nb_error(t_var *var);
+void			print_wrong_arg(t_var *var);
+void			mutex_error(t_var *var);
+void			mutex_error_2(t_var *var);
+void			print_mutex_error(t_var *var);
 
 //time.c
 long int		get_time(void);

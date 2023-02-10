@@ -93,6 +93,7 @@ t_philo	**init_philo(t_var *var)
 	philo = malloc(sizeof(t_philo *) * var->nb_philo);
 	if (!philo)
 		return (NULL);
+	i = 0;
 	while (i < var->nb_philo)
 	{
 		philo[i] = (t_philo *)malloc(sizeof(t_philo) * 1);
@@ -128,32 +129,23 @@ t_var	*init_base(t_var *var, int argc, char **argv)
 		return (printf("Malloc error\n"), NULL);
 	var->nb_philo = ft_atoi(argv[1]);
 	if (var->nb_philo == 0)
-		return (printf("Error, 1 philo min\n"), NULL);
+		return (print_nb_error(var), NULL);
 	var->time_to_die = ft_atoi(argv[2]);
 	var->time_to_eat = ft_atoi(argv[3]);
 	var->time_to_sleep = ft_atoi(argv[4]);
 	if (argc == 6)
 	{
 		if (ft_atoi(argv[5]) == 0)
-			return (printf("Wrong arg\n"), NULL);
+			return (print_wrong_arg(var), NULL);
 		var->must_eat = ft_atoi(argv[5]);
 	}
 	else
 		var->must_eat = -1;
 	var->philo = init_philo(var);
-	//  unsigned int i = 0;
-	// while (i < var->nb_philo)
-	// {
-	// 	//printf("check = %d\n", var->philo[i]->id);
-	// 	printf("id = %d\n", var->philo[i]->id);
-	// 	//printf("eat_count = %d\n", var->philo[i]->eat_count);
-	// 	//printf("last_eat = %ld\n", var->philo[i]->last_eat);
-	//  	i++;
-	// }
 	if (!var->philo)
-		return (printf("Philo init error\n"), NULL);
+		return (print_philos_error(var), NULL);
 	if (init_mutex(var) != 1)
-		return (printf("Mutex init error\n"), NULL);
+		return (print_mutex_error(var), NULL);
 	var->start = get_time();
 	var->satisfied = 0;
 	var->check = 0;

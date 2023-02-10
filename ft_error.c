@@ -33,32 +33,38 @@ int	ft_error(char **argv)
 	return (1);
 }
 
-int		ft_error_init(t_var *var, int argc, char **argv)
+void	print_philos_error(t_var *var)
 {
-	if (init_base(var, argc, argv) == 0)
-	{
-		printf("Malloc error, var struct is not initialized\n");
-		return (0);
-	}
-	else if (init_base(var, argc, argv) == (void*)1)
-	{
-		printf("Error. You must have, at leat, one philo minimum\n");
-		return (2);
-	}
-	else if (init_base(var, argc, argv) == (void*)2)
-	{
-		printf("Error. Philos has to eat 1 time minimum !\n");
-		return (3);
-	}
-	else if (init_base(var, argc, argv) ==(void*) 3)
-	{
-		printf("Error. Philos initialisation failed\n");
-		return (4);
-	}
-	else if (init_base(var, argc, argv) == (void*)4)
-	{
-		printf("Error. Mutex initialisation failed\n");
-		return (5);
-	}
-	return (1);
+	free(var);
+	printf("Philos initalization failed\n");
 }
+
+// int		ft_error_init(t_var *var, int argc, char **argv)
+// {
+// 	if (init_base(var, argc, argv) == 0)
+// 	{
+// 		printf("Malloc error, var struct is not initialized\n");
+// 		return (0);
+// 	}
+// 	else if (init_base(var, argc, argv) == (void*)1)
+// 	{
+// 		printf("Error. You must have, at leat, one philo minimum\n");
+// 		return (2);
+// 	}
+// 	else if (init_base(var, argc, argv) == (void*)2)
+// 	{
+// 		printf("Error. Philos has to eat 1 time minimum !\n");
+// 		return (3);
+// 	}
+// 	else if (init_base(var, argc, argv) ==(void*) 3)
+// 	{
+// 		printf("Error. Philos initialisation failed\n");
+// 		return (4);
+// 	}
+// 	else if (init_base(var, argc, argv) == (void*)4)
+// 	{
+// 		printf("Error. Mutex initialisation failed\n");
+// 		return (5);
+// 	}
+// 	return (1);
+// }
