@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_error_init.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mael <mael@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/26 21:53:55 by mael              #+#    #+#             */
+/*   Updated: 2023/03/26 21:53:55 by mael             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 void	print_nb_error(t_var *var)
@@ -14,7 +26,7 @@ void	print_wrong_arg(t_var *var)
 
 void	mutex_error(t_var *var)
 {
-	unsigned int i;
+	unsigned int	i;
 
 	i = 0;
 	if (init_mutex(var) == 2)
@@ -39,7 +51,7 @@ void	mutex_error(t_var *var)
 
 void	mutex_error_2(t_var *var)
 {
-	unsigned int i;
+	unsigned int	i;
 
 	i = 0;
 	if (init_mutex(var) == 4)

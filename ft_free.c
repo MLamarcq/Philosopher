@@ -1,11 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_free.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mael <mael@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/26 21:56:04 by mael              #+#    #+#             */
+/*   Updated: 2023/03/26 21:56:04 by mael             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 void	ft_destoy_mutex(t_var *var)
 {
-	unsigned int i;
+	unsigned int	i;
 
 	i = 0;
-	//printf("nb = %d\n", var->nb_philo);
 	while (i < var->nb_philo)
 	{
 		pthread_mutex_destroy(&var->fork[i]);
@@ -19,8 +30,7 @@ void	ft_destoy_mutex(t_var *var)
 
 void	*ft_free_philo_var(t_var *var)
 {
-	unsigned int i;
-
+	unsigned int	i;
 
 	if (!var)
 		return (NULL);

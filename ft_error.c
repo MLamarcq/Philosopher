@@ -1,14 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mael <mael@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/26 21:54:45 by mael              #+#    #+#             */
+/*   Updated: 2023/03/26 21:54:45 by mael             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 int	ft_check_error(char **argv)
 {
-	int i;
-	int res;
+	int	i;
+	int	res;
 
 	i = 1;
 	if (ft_check(argv) == 0)
 		return (0);
-	while(argv[i])
+	while (argv[i])
 	{
 		res = ft_atoi(argv[i]);
 		if (res == -1)

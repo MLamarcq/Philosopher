@@ -1,5 +1,16 @@
-#include "philo.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   routine.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mael <mael@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/26 22:20:48 by mael              #+#    #+#             */
+/*   Updated: 2023/03/26 22:20:48 by mael             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "philo.h"
 
 int	eat_routine(t_var *var, t_philo *philo)
 {
@@ -22,7 +33,7 @@ int	eat_routine(t_var *var, t_philo *philo)
 	return (1);
 }
 
-void	only_one(t_var *var , t_philo *philo)
+void	only_one(t_var *var, t_philo *philo)
 {
 	pthread_mutex_lock(&var->fork[philo->right]);
 	print_output(var, philo->id, "has taken a fork");
@@ -31,7 +42,7 @@ void	only_one(t_var *var , t_philo *philo)
 	pthread_mutex_unlock(&var->fork[philo->right]);
 }
 
-int		a_philo_is_satisfied(t_var *var, t_philo *philo)
+int	a_philo_is_satisfied(t_var *var, t_philo *philo)
 {
 	if (var->must_eat == philo->eat_count)
 	{
@@ -56,29 +67,25 @@ void	*routine(void *data)
 	t_philo	*philo;
 	t_var	*var;
 
-	philo = (t_philo  *)data;
+	philo = (t_philo *)data;
 	var = philo->var;
 	if (var->nb_philo == 1)
-		return (only_one(var, philo), (int*)0);
+		return (only_one(var, philo), (int *)0);
 	philo_wait_start(philo);
 	while (1)
 	{
 		pthread_mutex_lock(&var->check_finish);
 		if (var->check == 0)
 		{
-			//printf("check = %d\n", var->check);
 			pthread_mutex_unlock(&var->check_finish);
 			if (eat_routine(var, philo) == 0)
 				break ;
 			if (a_philo_is_satisfied(var, philo) == 0)
 				break ;
 			print_output(var, philo->id, "is thinking");
-			// print_output(var, philo->id, "is sleeping");
-			// wait_time(var, (long int)var->time_to_sleep);
-			// print_output(var, philo->id, "is thinking");
 		}
 		else
-			return (pthread_mutex_unlock(&var->check_finish), (int*)2);
+			return (pthread_mutex_unlock(&var->check_finish), (int *)2);
 	}
-	return ((int*)1);
+	return ((int *)1);
 }

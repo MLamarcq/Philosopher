@@ -1,11 +1,23 @@
-#ifndef PHILO
-#define PHILO
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <pthread.h>
-#include <string.h>
-#include <sys/time.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mael <mael@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/26 22:17:24 by mael              #+#    #+#             */
+/*   Updated: 2023/03/26 22:17:24 by mael             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef PHILO_H
+# define PHILO_H
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <pthread.h>
+# include <string.h>
+# include <sys/time.h>
 
 typedef struct s_var	t_var;
 
@@ -60,19 +72,23 @@ void			print_mutex_error(t_var *var);
 long int		get_time(void);
 int				wait_time(t_var *var, long int time_type);
 
+//init_philo.c
+int				fill_philo(t_philo **philo, t_var *var, int i);
+t_philo			**init_philo(t_var *var);
+t_var			*init_base(t_var *var, int argc, char **argv);
+void			init_var(t_var *var);
+
 //init.c
 int				init_fork(t_var *var);
 int				init_eat(t_var *var);
 int				init_mutex(t_var *var);
-t_philo			**init_philo(t_var *var);
-t_var			*init_base(t_var *var, int argc, char **argv);
 
 //thread.c
 int				init_thread(t_var *var);
-int     		join_thread(t_var *var);
+int				join_thread(t_var *var);
 
 //routine.c
-void    		*routine(void * data);
+void			*routine(void *data);
 int				eat_routine(t_var *var, t_philo *philo);
 void			only_one(t_var *var, t_philo *philo);
 int				a_philo_is_satisfied(t_var *var, t_philo *philo);

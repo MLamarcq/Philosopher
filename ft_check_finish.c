@@ -1,14 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_check_finish.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mael <mael@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/26 21:50:41 by mael              #+#    #+#             */
+/*   Updated: 2023/03/26 21:50:41 by mael             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
-int		check_time_eat_time_death(t_var *var, unsigned int i)
+int	check_time_eat_time_death(t_var *var, unsigned int i)
 {
-	long int current_time;
+	long int	current_time;
 
-	//printf("c1\n");
 	current_time = get_time();
 	if (current_time == -1)
 		return (0);
-	//printf("die = %d\n", var->time_to_die);
 	pthread_mutex_lock(&var->last_eat[i]);
 	if ((current_time - var->philo[i]->last_eat) >= var->time_to_die)
 	{
@@ -23,9 +33,8 @@ int		check_time_eat_time_death(t_var *var, unsigned int i)
 	return (1);
 }
 
-int		philos_have_eated(t_var *var)
+int	philos_have_eated(t_var *var)
 {
-	//printf("c2\n");
 	pthread_mutex_lock(&var->finish_eat);
 	if ((var->must_eat != -1) && (var->nb_philo == var->satisfied))
 	{
@@ -40,11 +49,10 @@ int		philos_have_eated(t_var *var)
 	return (1);
 }
 
-int		end_of_simulation(t_var *var)
+int	end_of_simulation(t_var *var)
 {
-	unsigned int i;
+	unsigned int	i;
 
-	//printf("c3\n");
 	i = 0;
 	while (i < var->nb_philo)
 	{
@@ -62,16 +70,11 @@ int		end_of_simulation(t_var *var)
 
 void	*watcher_routine(void *data)
 {
-	t_var *var;
+	t_var	*var;
 
 	var = (t_var *)data;
-
-	//printf("c4\n");
-	//printf("res = %d\n", var->must_eat);
 	if (var->must_eat == 0)
 		return (NULL);
-	//printf("c5\n");
-	//printf("must_eat = %d\n", var->must_eat);
 	while (end_of_simulation(var) == 1)
 		usleep(1000);
 	if (end_of_simulation(var) != 1)

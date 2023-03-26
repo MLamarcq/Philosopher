@@ -15,6 +15,7 @@ print_output.c \
 ft_check_finish.c \
 ft_free.c \
 ft_error_init.c \
+init_philo.c \
 
 OBJ = $(SRC:.c=.o)
 
