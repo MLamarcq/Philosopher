@@ -20,7 +20,7 @@ int	check_time_eat_time_death(t_var *var, unsigned int i)
 	if (current_time == -1)
 		return (0);
 	pthread_mutex_lock(&var->last_eat[i]);
-	if ((current_time - var->philo[i]->last_eat) >= var->time_to_die)
+	if ((current_time - var->philo[i]->last_eat) > var->time_to_die)
 	{
 		pthread_mutex_unlock(&var->last_eat[i]);
 		print_output(var, var->philo[i]->id, "died");
